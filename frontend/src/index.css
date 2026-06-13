@@ -1,0 +1,299 @@
+/* ── Reset & base ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #22263a;
+  --border: #2e3250;
+  --accent: #6c8cf5;
+  --accent-hover: #8ba4ff;
+  --text: #e8eaf6;
+  --text-muted: #8890b8;
+  --success: #4caf82;
+  --error: #e05c5c;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0,0,0,.45);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── Layout ────────────────────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6c8cf5, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: .4rem;
+}
+
+.header p {
+  color: var(--text-muted);
+  font-size: .95rem;
+}
+
+/* ── Main ──────────────────────────────────────────────────── */
+.main {
+  width: 100%;
+  max-width: 720px;
+}
+
+/* ── Category tabs ─────────────────────────────────────────── */
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .45rem .9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 500;
+  transition: background .15s, color .15s, border-color .15s;
+}
+
+.tab:hover {
+  background: var(--surface2);
+  color: var(--text);
+}
+
+.tab--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.tab-icon { font-size: 1rem; }
+.tab-label { white-space: nowrap; }
+
+/* ── Card ──────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+/* ── Form ──────────────────────────────────────────────────── */
+.form-row {
+  margin-bottom: 1.25rem;
+}
+
+.unit-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: .4rem;
+}
+
+.field label {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+input[type="number"],
+select {
+  width: 100%;
+  padding: .7rem 1rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1rem;
+  appearance: none;
+  transition: border-color .15s;
+}
+
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* remove number spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+/* ── Swap button ───────────────────────────────────────────── */
+.swap-btn {
+  flex-shrink: 0;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: .05rem;
+}
+
+.swap-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ── Convert button ────────────────────────────────────────── */
+.convert-btn {
+  width: 100%;
+  padding: .85rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, opacity .15s;
+}
+
+.convert-btn:hover:not(:disabled) { background: var(--accent-hover); }
+.convert-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* ── Alert ─────────────────────────────────────────────────── */
+.alert {
+  margin-top: 1.25rem;
+  padding: .85rem 1rem;
+  border-radius: 8px;
+  font-size: .9rem;
+}
+
+.alert--error {
+  background: rgba(224, 92, 92, .12);
+  border: 1px solid var(--error);
+  color: var(--error);
+}
+
+/* ── Result ────────────────────────────────────────────────── */
+.result {
+  margin-top: 1.75rem;
+  padding: 1.5rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+  animation: fadeIn .25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.result-equation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: .75rem;
+  font-size: 1.25rem;
+}
+
+.result-input { color: var(--text-muted); }
+.result-input em { font-style: normal; color: var(--text); }
+
+.result-equals {
+  color: var(--text-muted);
+  font-size: 1.5rem;
+}
+
+.result-output {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--success);
+}
+
+.result-output em {
+  font-style: normal;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-left: .25rem;
+}
+
+.result-category {
+  margin-top: .5rem;
+  font-size: .8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* ── Error screen ──────────────────────────────────────────── */
+.error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 1rem;
+  color: var(--error);
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-icon { font-size: 3rem; }
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .unit-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .swap-btn {
+    align-self: center;
+    transform: rotate(90deg);
+  }
+
+  .result-equation { font-size: 1rem; }
+  .result-output   { font-size: 1.4rem; }
+}
